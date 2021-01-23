@@ -147,6 +147,22 @@ public class Main extends JavaPlugin implements Listener{
 				Player player = (Player) sender;
 			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE));
 			}
+			else if(args[0].equalsIgnoreCase("zoglin")) {
+				Player player = (Player) sender;
+			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOGLIN));
+			}
+			else if(args[0].equalsIgnoreCase("zombie_horse")) {
+				Player player = (Player) sender;
+			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE_HORSE));
+			}
+			else if(args[0].equalsIgnoreCase("zombie_villager")) {
+				Player player = (Player) sender;
+			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE_VILLAGER));
+			}
+			else if(args[0].equalsIgnoreCase("zombified_piglin")) {
+				Player player = (Player) sender;
+			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIFIED_PIGLIN));
+			}
 			
 		}
 		
