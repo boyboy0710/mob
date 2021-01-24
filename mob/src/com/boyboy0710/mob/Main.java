@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
@@ -21,16 +22,23 @@ import org.bukkit.potion.PotionEffectType;
 public class Main extends JavaPlugin implements Listener{
 
 	public void onEnable() {
-		System.out.println("----------------------------------------------------");
+		System.out.println("----------------------------------------------------------");
 		System.out.println("    mob 를러그인을 성공적으로 불러왔습니다");
 		System.out.println("        플러그인 제작자ㅣ:boyboy0710");
-		System.out.println("----------------------------------------------------");
+		System.out.println("   최신버전 다운 사이트 : https://github.com/boyboy0710/mob");
+		System.out.println("----------------------------------------------------------");
 		
 		
 	}
 	@Override
 	public void onDisable() {
 		System.out.println("mob 플러그인이 비활성화 되었습니다");
+	}
+	
+	@EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        Player p = e.getPlayer();
+        p.sendMessage("최신버전 다운사이트 : https://github.com/boyboy0710/mob");
 	}
 	
 	public boolean zombie = false;
