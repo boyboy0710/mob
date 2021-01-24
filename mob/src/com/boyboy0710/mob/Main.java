@@ -288,6 +288,19 @@ public class Main extends JavaPlugin implements Listener{
 		 skeleton.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
 		 skeleton.getEquipment().setItemInHand(new ItemStack(Material.BOW));
 		 }
+	 public void setwitchStats(LivingEntity skeleton) {
+		 skeleton.setCustomName("queen_witch");
+		 skeleton.setMaxHealth(1000.0);//최대 체력 설정
+		 skeleton.setHealth(1000.0);//현재 체력 설정
+		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
+		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,1000000, 10));
+		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,1000000, 100));
+		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,1000000, 1));
+		 skeleton.getEquipment().setHelmet(new ItemStack(Material.NETHERITE_HELMET));
+		 skeleton.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
+		 skeleton.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
+		 skeleton.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
+		 }
 	 
 	 @EventHandler
 	 public void getWitherSkeletonDead(EntityDeathEvent event) {
@@ -307,6 +320,7 @@ public class Main extends JavaPlugin implements Listener{
 			   }
 			 }
 	 }
+	
 	 @EventHandler
 	 public void getSkeletonDead(EntityDeathEvent event) {
 		 if(event.getEntity().getCustomName() == "king_skeleton") {
