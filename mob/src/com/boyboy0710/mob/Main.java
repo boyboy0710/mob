@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,6 +49,320 @@ public class Main extends JavaPlugin implements Listener{
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
+		if(cmd.getName().equalsIgnoreCase("wear")) {
+			Player p = (Player) sender;
+			int hh = 0;
+			int hc = 0;
+			int hb = 0;
+			int hl = 0;
+			
+			int ch = 0;
+			int cc = 0;
+			int cb = 0;
+			int cl = 0;
+			
+			int ih = 0;
+			int ic = 0;
+			int ib = 0;
+			int il = 0;
+			
+			int gh = 0;
+			int gc = 0;
+			int gb = 0;
+			int gl = 0;
+			
+			int dh = 0;
+			int dc = 0;
+			int db = 0;
+			int dl = 0;
+			
+			int nh = 0;
+			int nc = 0;
+			int nb = 0;
+			int nl = 0;
+			
+			
+			int l = p.getLevel();
+			int hp = 20;
+			int e = 0;
+			
+			if(args.length == 0) {
+				sender.sendMessage("커맨드를 끝까지 쳐주세요");
+			}
+			else if(args[0].equalsIgnoreCase("diamond_helmet")) {
+				p.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET)); 
+				hh = 0; //1
+				ch = 0; //1
+				ih = 0; //2
+				gh = 0; //2
+				dh = 3; //3
+				nh = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("netherite_helmet")) {
+				p.getInventory().setHelmet(new ItemStack(Material.NETHERITE_HELMET)); 
+				hh = 0; //1
+				ch = 0; //1
+				ih = 0; //2
+				gh = 0; //2
+				dh = 0; //3
+				nh = 4; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("golden_helmet")) {
+				p.getInventory().setHelmet(new ItemStack(Material.GOLDEN_HELMET)); 
+				hh = 0; //1
+				ch = 0; //1
+				ih = 0; //2
+				gh = 2; //2
+				dh = 0; //3
+				nh = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("chainmail_helmet")) {
+				p.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET)); 
+				hh = 0; //1
+				ch = 1; //1
+				ih = 0; //2
+				gh = 0; //2
+				dh = 0; //3
+				nh = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("iron_helmet")) {
+				p.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET)); 
+				hh = 0; //1
+				ch = 0; //1
+				ih = 2; //2
+				gh = 0; //2
+				dh = 0; //3
+				nh = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("leather_helmet")) {
+				p.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET)); 
+				hh = 1; //1
+				ch = 0; //1
+				ih = 0; //2
+				gh = 0; //2
+				dh = 0; //3
+				nh = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			else if(args[0].equalsIgnoreCase("diamond_chestplate")) {
+				p.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE)); 
+				hc = 0; //1
+				cc = 0; //1
+				ic = 0; //2
+				gc = 0; //2
+				dc = 3; //3
+				nc = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("netherite_chestplate")) {
+				p.getInventory().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE)); 
+				hc = 0; //1
+				cc = 0; //1
+				ic = 0; //2
+				gc = 0; //2
+				dc = 0; //3
+				nc = 4; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("golden_chestplate")) {
+				p.getInventory().setChestplate(new ItemStack(Material.GOLDEN_CHESTPLATE)); 
+				hc = 0; //1
+				cc = 0; //1
+				ic= 0; //2
+				gc= 2; //2
+				dc= 0; //3
+				nc = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("chainmail_chestplate")) {
+				p.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_HELMET)); 
+				hc = 0; //1
+				cc = 1; //1
+				ic = 0; //2
+				gc = 0; //2
+				dc = 0; //3
+				nc = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("iron_chestplate")) {
+				p.getInventory().setChestplate(new ItemStack(Material.IRON_HELMET)); 
+				hc = 0; //1
+				cc = 0; //1
+				ic = 2; //2
+				gc = 0; //2
+				dc = 0; //3
+				nc = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("leather_chestplate")) {
+				p.getInventory().setChestplate(new ItemStack(Material.LEATHER_HELMET)); 
+				hc = 1; //1
+				cc = 0; //1
+				ic = 0; //2
+				gc = 0; //2
+				dc = 0; //3
+				nc = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			
+			
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			else if(args[0].equalsIgnoreCase("diamond_bootse")) {
+				p.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS)); 
+				hb = 0; //1
+				cb = 0; //1
+				ib = 0; //2
+				gb = 0; //2
+				db = 3; //3
+				nb = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("netherite_boots")) {
+				p.getInventory().setBoots(new ItemStack(Material.NETHERITE_BOOTS)); 
+				hb = 0; //1
+				cb = 0; //1
+				ib = 0; //2
+				gb = 0; //2
+				db = 0; //3
+				nb = 4; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("golden_boots")) {
+				p.getInventory().setBoots(new ItemStack(Material.GOLDEN_BOOTS)); 
+				hb = 0; //1
+				cb = 0; //1
+				ib = 0; //2
+				gb = 2; //2
+				db = 0; //3
+				nb = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("chainmail_boots")) {
+				p.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS)); 
+				hb = 0; //1
+				cb = 1; //1
+				ib = 0; //2
+				gb = 0; //2
+				db = 0; //3
+				nb = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("iron_boots")) {
+				p.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS)); 
+				hb = 0; //1
+				cb = 0; //1
+				ib = 2; //2
+				gb = 0; //2
+				db = 0; //3
+				nb = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("leather_boots")) {
+				p.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS)); 
+				hb = 1; //1
+				cb = 0; //1
+				ib = 0; //2
+				gb = 0; //2
+				db = 0; //3
+				nb = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			
+			
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			else if(args[0].equalsIgnoreCase("diamond_leggings")) {
+				p.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS)); 
+				hl = 0; //1
+				cl = 0; //1
+				il = 0; //2
+				gl = 0; //2
+				dl = 3; //3
+				nl = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("netherite_leggings")) {
+				p.getInventory().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS)); 
+				hl = 0; //1
+				cl = 0; //1
+				il = 0; //2
+				gl = 0; //2
+				dl = 0; //3
+				nl = 4; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("golden_leggings")) {
+				p.getInventory().setLeggings(new ItemStack(Material.GOLDEN_LEGGINGS)); 
+				hl = 0; //1
+				cl = 0; //1
+				il = 0; //2
+				gl = 2; //2
+				dl = 0; //3
+				nl = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("chainmail_leggings")) {
+				p.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS)); 
+				hl = 0; //1
+				cl = 1; //1
+				il = 0; //2
+				gl = 0; //2
+				dl = 0; //3
+				nl = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("iron_leggings")) {
+				p.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS)); 
+				hl = 0; //1
+				cl = 0; //1
+				il = 2; //2
+				gl = 0; //2
+				dl = 0; //3
+				nl = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			else if(args[0].equalsIgnoreCase("leather_leggings")) {
+				p.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS)); 
+				hl = 1; //1
+				cl = 0; //1
+				il = 0; //2
+				gl = 0; //2
+				dl = 0; //3
+				nl = 0; //4
+				e = hh+hc+hb+hl + ch+cc+cb+cl + ih+ic+ib+il + gh+gc+gb+gl + dh+dc+db+dl + nh+nc+nb+nl + l + hp;
+				p.setMaxHealth(e);
+			}
+			
+		}
 		if(cmd.getName().equalsIgnoreCase("spawn_no_ai")) {
 			if(args.length == 0) {
 				sender.sendMessage("커맨드를 끝까지 쳐주세요");
@@ -393,5 +708,5 @@ public class Main extends JavaPlugin implements Listener{
 		   }
 	   }
 	 }
-	}	 
+	}
 }
