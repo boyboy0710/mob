@@ -26,3 +26,6 @@
 
 # 칼 날리기
 -다이아몬드 칼을 우클릭시 가능[시험판]
+
+# 기타
+-구 버전 https://github.com/boyboy0710/entity
