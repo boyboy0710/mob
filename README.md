@@ -29,3 +29,10 @@
 
 # 기타
 -구 버전 https://github.com/boyboy0710/entity
+
+# 업데이트 예고
+-queen 몹
+
+-no_ai 몹
+
+*업데이트가 지연되거나 안될 수 있습니다*
