@@ -39,7 +39,7 @@
 
 -2차수정 허용 : https://github.com/son123j/mob_son123j
 
--beta버전 : [미출시]
+-beta버전 : https://github.com/boyboy0710/mob-beta
 # 업데이트 예고
 -queen 몹
 
