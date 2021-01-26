@@ -38,6 +38,8 @@
 -버그발견 및 기능건의는 https://discord.gg/zH4q6Mtvwv
 
 -2차수정 허용 : https://github.com/son123j/mob_son123j
+
+-beta버전 : [미출시]
 # 업데이트 예고
 -queen 몹
 
