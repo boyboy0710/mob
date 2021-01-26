@@ -59,6 +59,7 @@ public class Main extends JavaPlugin implements Listener{
 		int l = 0;
 		Player p = (Player) sender;
 		int level = p.getLevel();
+		int level2 = level*1;
 		int hp = 20;
 		int e = 0;
 		if(cmd.getName().equalsIgnoreCase("reloed_Health")) {
@@ -84,15 +85,19 @@ public class Main extends JavaPlugin implements Listener{
 			
 			if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
 				c = 4;
+				level2 = level*4;
 			}
 			if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
 				c = 3;
+				level2 = level*3;
 			}
 			if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
 				c = 2;
+				level2 = level*2;
 			}
 			if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
 				c = 2;
+				level2 = level*2;
 			}
 			if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
 				c = 1;
@@ -139,8 +144,8 @@ public class Main extends JavaPlugin implements Listener{
 			}
 			if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
 				l = 1;
-			}
-			e = l+h+c+b+ level + hp;
+			} 
+			e = l+h+c+b+ level2 + hp;
 			p.setMaxHealth(e);
 		}
 		
