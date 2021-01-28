@@ -1,10 +1,9 @@
 main : com.boyboy0710.mob.Main
 name : mob
-version : 1.0.0
+version : 1.0.1
 api-version : 1.16
 
 commands:
   spawn:
   spawn_no_ai:
   reloed_Health:
-  
