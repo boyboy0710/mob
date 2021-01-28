@@ -1,6 +1,6 @@
 main : com.boyboy0710.mob.Main
 name : mob
-version : 1.2.0
+version : 1.2.1
 api-version : 1.16
 
 commands:

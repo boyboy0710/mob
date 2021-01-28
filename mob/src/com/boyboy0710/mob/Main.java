@@ -1,33 +1,20 @@
 package com.boyboy0710.mob;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -52,18 +39,16 @@ public class Main extends JavaPlugin implements Listener{
         Player p = e.getPlayer();
         p.sendMessage("최신버전 다운사이트 : https://github.com/boyboy0710/mob");
 	}
-	
-	public boolean zombie = false;
-	public boolean skeleton = false;
-	public boolean creeper = false;
-	public boolean Wither_Skeleton = false;
+//------------------------------------------------------------------------------------------------------------------------------------
+	//player
 	int h = 0;
 	int c = 0;
 	int b = 0;
 	int l = 0;
 	int hp = 20;
 	int e = 0;
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	
+	public boolean onCommand1(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
 		int level = p.getLevel();
 		if(cmd.getName().equalsIgnoreCase("reloed_Health")) {
@@ -175,6 +160,207 @@ public class Main extends JavaPlugin implements Listener{
 				p.getInventory().setHelmet(head);
 			}
 		}
+		return false;
+	}
+
+	 @EventHandler
+		public void onInteract(PlayerLevelChangeEvent ev) {
+			Player p = ev.getPlayer();
+			int level = p.getLevel();
+				if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
+					b = 4;
+				}
+				if(p.getInventory().getBoots().getType() == Material.DIAMOND_BOOTS) {
+					b = 3;
+				}
+				if(p.getInventory().getBoots().getType() == Material.GOLDEN_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.IRON_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.CHAINMAIL_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.LEATHER_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.AIR) {
+					b = 0;
+				}
+				
+				
+				if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
+					c = 4;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
+					c = 3;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.AIR) {
+					c = 0;
+				}
+				
+				if(p.getInventory().getHelmet().getType() == Material.AIR) {
+					h = 0;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.NETHERITE_HELMET) {
+					h = 4;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.DIAMOND_HELMET) {
+					h = 3;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.CHAINMAIL_HELMET) {
+					h = 1;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) {
+					h = 1;
+				}
+				
+				
+				if(p.getInventory().getLeggings().getType() == Material.AIR) {
+					l = 0;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.NETHERITE_LEGGINGS) {
+					l = 4;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
+					l = 3;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.GOLDEN_LEGGINGS) {
+					l = 2; 
+				}
+				if(p.getInventory().getLeggings().getType() == Material.IRON_LEGGINGS) {
+					l = 2;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.CHAINMAIL_LEGGINGS) {
+					l = 1;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
+					l = 1;
+				} 
+				e = l+h+c+b+ level + hp;
+				p.setMaxHealth(e);
+			}
+	 
+	 	@EventHandler
+		public void onInteract(PlayerRespawnEvent ev) {
+			Player p = ev.getPlayer();
+			int level = p.getLevel();
+				if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
+					b = 4;
+				}
+				if(p.getInventory().getBoots().getType() == Material.DIAMOND_BOOTS) {
+					b = 3;
+				}
+				if(p.getInventory().getBoots().getType() == Material.GOLDEN_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.IRON_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.CHAINMAIL_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.LEATHER_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.AIR) {
+					b = 0;
+				}
+				
+				
+				if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
+					c = 4;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
+					c = 3;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.AIR) {
+					c = 0;
+				}
+				
+				if(p.getInventory().getHelmet().getType() == Material.AIR) {
+					h = 0;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.NETHERITE_HELMET) {
+					h = 4;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.DIAMOND_HELMET) {
+					h = 3;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.CHAINMAIL_HELMET) {
+					h = 1;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) {
+					h = 1;
+				}
+				
+				
+				if(p.getInventory().getLeggings().getType() == Material.AIR) {
+					l = 0;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.NETHERITE_LEGGINGS) {
+					l = 4;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
+					l = 3;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.GOLDEN_LEGGINGS) {
+					l = 2; 
+				}
+				if(p.getInventory().getLeggings().getType() == Material.IRON_LEGGINGS) {
+					l = 2;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.CHAINMAIL_LEGGINGS) {
+					l = 1;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
+					l = 1;
+				} 
+				e =l+h+c+b+ level + hp;
+				p.setMaxHealth(e);
+			}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 	//spawn_no_ai
+
+		public boolean onCommand2(CommandSender sender, Command cmd, String label, String[] args) {
+			Player p = (Player) sender;
 		
 		if(cmd.getName().equalsIgnoreCase("spawn_no_ai")) {
 			if(args.length == 0) {
@@ -366,9 +552,20 @@ public class Main extends JavaPlugin implements Listener{
 				Player player = (Player) sender;
 			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIFIED_PIGLIN));
 			}
-			
 		}
+		return false;
+	}
 		
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+		//spawn
+		public boolean zombie = false;
+		public boolean skeleton = false;
+		public boolean creeper = false;
+		public boolean Wither_Skeleton = false;
+		
+		
+		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+			Player p = (Player) sender;
 		if(cmd.getName().equalsIgnoreCase("spawn")) {
 			if(args.length == 0) {
 				sender.sendMessage("커맨드를 끝까지 쳐주세요");
@@ -590,197 +787,5 @@ public class Main extends JavaPlugin implements Listener{
 	 }
 	}
 	 
-	 @EventHandler
-		public void onInteract(PlayerLevelChangeEvent ev) {
-			Player p = ev.getPlayer();
-			int level = p.getLevel();
-				if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
-					b = 4;
-				}
-				if(p.getInventory().getBoots().getType() == Material.DIAMOND_BOOTS) {
-					b = 3;
-				}
-				if(p.getInventory().getBoots().getType() == Material.GOLDEN_BOOTS) {
-					b = 2;
-				}
-				if(p.getInventory().getBoots().getType() == Material.IRON_BOOTS) {
-					b = 2;
-				}
-				if(p.getInventory().getBoots().getType() == Material.CHAINMAIL_BOOTS) {
-					b = 1;
-				}
-				if(p.getInventory().getBoots().getType() == Material.LEATHER_BOOTS) {
-					b = 1;
-				}
-				if(p.getInventory().getBoots().getType() == Material.AIR) {
-					b = 0;
-				}
-				
-				
-				if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
-					c = 4;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
-					c = 3;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
-					c = 2;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
-					c = 2;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
-					c = 1;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
-					c = 1;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.AIR) {
-					c = 0;
-				}
-				
-				if(p.getInventory().getHelmet().getType() == Material.AIR) {
-					h = 0;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.NETHERITE_HELMET) {
-					h = 4;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.DIAMOND_HELMET) {
-					h = 3;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
-					h = 2;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
-					h = 2;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.CHAINMAIL_HELMET) {
-					h = 1;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) {
-					h = 1;
-				}
-				
-				
-				if(p.getInventory().getLeggings().getType() == Material.AIR) {
-					l = 0;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.NETHERITE_LEGGINGS) {
-					l = 4;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
-					l = 3;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.GOLDEN_LEGGINGS) {
-					l = 2; 
-				}
-				if(p.getInventory().getLeggings().getType() == Material.IRON_LEGGINGS) {
-					l = 2;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.CHAINMAIL_LEGGINGS) {
-					l = 1;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
-					l = 1;
-				} 
-				e = l+h+c+b+ level + hp;
-				p.setMaxHealth(e);
-			}
-	 
-	 @EventHandler
-		public void onInteract(PlayerRespawnEvent ev) {
-			Player p = ev.getPlayer();
-			int level = p.getLevel();
-				if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
-					b = 4;
-				}
-				if(p.getInventory().getBoots().getType() == Material.DIAMOND_BOOTS) {
-					b = 3;
-				}
-				if(p.getInventory().getBoots().getType() == Material.GOLDEN_BOOTS) {
-					b = 2;
-				}
-				if(p.getInventory().getBoots().getType() == Material.IRON_BOOTS) {
-					b = 2;
-				}
-				if(p.getInventory().getBoots().getType() == Material.CHAINMAIL_BOOTS) {
-					b = 1;
-				}
-				if(p.getInventory().getBoots().getType() == Material.LEATHER_BOOTS) {
-					b = 1;
-				}
-				if(p.getInventory().getBoots().getType() == Material.AIR) {
-					b = 0;
-				}
-				
-				
-				if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
-					c = 4;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
-					c = 3;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
-					c = 2;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
-					c = 2;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
-					c = 1;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
-					c = 1;
-				}
-				if(p.getInventory().getChestplate().getType() == Material.AIR) {
-					c = 0;
-				}
-				
-				if(p.getInventory().getHelmet().getType() == Material.AIR) {
-					h = 0;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.NETHERITE_HELMET) {
-					h = 4;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.DIAMOND_HELMET) {
-					h = 3;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
-					h = 2;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
-					h = 2;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.CHAINMAIL_HELMET) {
-					h = 1;
-				}
-				if(p.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) {
-					h = 1;
-				}
-				
-				
-				if(p.getInventory().getLeggings().getType() == Material.AIR) {
-					l = 0;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.NETHERITE_LEGGINGS) {
-					l = 4;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
-					l = 3;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.GOLDEN_LEGGINGS) {
-					l = 2; 
-				}
-				if(p.getInventory().getLeggings().getType() == Material.IRON_LEGGINGS) {
-					l = 2;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.CHAINMAIL_LEGGINGS) {
-					l = 1;
-				}
-				if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
-					l = 1;
-				} 
-				e =l+h+c+b+ level + hp;
-				p.setMaxHealth(e);
-			}
+	
 }
