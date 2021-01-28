@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,8 +18,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLevelChangeEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -51,16 +57,15 @@ public class Main extends JavaPlugin implements Listener{
 	public boolean skeleton = false;
 	public boolean creeper = false;
 	public boolean Wither_Skeleton = false;
-	
+	int h = 0;
+	int c = 0;
+	int b = 0;
+	int l = 0;
+	int hp = 20;
+	int e = 0;
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		int h = 0;
-		int c = 0;
-		int b = 0;
-		int l = 0;
 		Player p = (Player) sender;
 		int level = p.getLevel();
-		int hp = 20;
-		int e = 0;
 		if(cmd.getName().equalsIgnoreCase("reloed_Health")) {
 			if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
 				b = 4;
@@ -153,6 +158,22 @@ public class Main extends JavaPlugin implements Listener{
 			} 
 			e = l+h+c+b+ level + hp;
 			p.setMaxHealth(e);
+		}
+		
+		if(cmd.getName().equalsIgnoreCase("MaxHealth")) {
+			p.sendMessage("체력회복중......");
+			ItemStack head =  p.getInventory().getHelmet();
+			int ph = (int) p.getHealth();
+			p.setHealth(ph);
+			p.getInventory().setHelmet(new ItemStack(Material.GOLD_BLOCK));
+			if(p.getHealth() != e) {
+				ph = ph + 1;
+				p.setHealth(ph);
+				p.getInventory().setHelmet(new ItemStack(Material.AIR));
+			}
+			if(p.getHealth() == e) {
+				p.getInventory().setHelmet(head);
+			}
 		}
 		
 		if(cmd.getName().equalsIgnoreCase("spawn_no_ai")) {
@@ -569,5 +590,197 @@ public class Main extends JavaPlugin implements Listener{
 	 }
 	}
 	 
+	 @EventHandler
+		public void onInteract(PlayerLevelChangeEvent ev) {
+			Player p = ev.getPlayer();
+			int level = p.getLevel();
+				if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
+					b = 4;
+				}
+				if(p.getInventory().getBoots().getType() == Material.DIAMOND_BOOTS) {
+					b = 3;
+				}
+				if(p.getInventory().getBoots().getType() == Material.GOLDEN_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.IRON_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.CHAINMAIL_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.LEATHER_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.AIR) {
+					b = 0;
+				}
+				
+				
+				if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
+					c = 4;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
+					c = 3;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.AIR) {
+					c = 0;
+				}
+				
+				if(p.getInventory().getHelmet().getType() == Material.AIR) {
+					h = 0;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.NETHERITE_HELMET) {
+					h = 4;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.DIAMOND_HELMET) {
+					h = 3;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.CHAINMAIL_HELMET) {
+					h = 1;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) {
+					h = 1;
+				}
+				
+				
+				if(p.getInventory().getLeggings().getType() == Material.AIR) {
+					l = 0;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.NETHERITE_LEGGINGS) {
+					l = 4;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
+					l = 3;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.GOLDEN_LEGGINGS) {
+					l = 2; 
+				}
+				if(p.getInventory().getLeggings().getType() == Material.IRON_LEGGINGS) {
+					l = 2;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.CHAINMAIL_LEGGINGS) {
+					l = 1;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
+					l = 1;
+				} 
+				e = l+h+c+b+ level + hp;
+				p.setMaxHealth(e);
+			}
 	 
+	 @EventHandler
+		public void onInteract(PlayerRespawnEvent ev) {
+			Player p = ev.getPlayer();
+			int level = p.getLevel();
+				if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
+					b = 4;
+				}
+				if(p.getInventory().getBoots().getType() == Material.DIAMOND_BOOTS) {
+					b = 3;
+				}
+				if(p.getInventory().getBoots().getType() == Material.GOLDEN_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.IRON_BOOTS) {
+					b = 2;
+				}
+				if(p.getInventory().getBoots().getType() == Material.CHAINMAIL_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.LEATHER_BOOTS) {
+					b = 1;
+				}
+				if(p.getInventory().getBoots().getType() == Material.AIR) {
+					b = 0;
+				}
+				
+				
+				if(p.getInventory().getChestplate().getType() == Material.NETHERITE_CHESTPLATE) {
+					c = 4;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.DIAMOND_CHESTPLATE) {
+					c = 3;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.GOLDEN_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.IRON_CHESTPLATE) {
+					c = 2;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.CHAINMAIL_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.LEATHER_CHESTPLATE) {
+					c = 1;
+				}
+				if(p.getInventory().getChestplate().getType() == Material.AIR) {
+					c = 0;
+				}
+				
+				if(p.getInventory().getHelmet().getType() == Material.AIR) {
+					h = 0;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.NETHERITE_HELMET) {
+					h = 4;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.DIAMOND_HELMET) {
+					h = 3;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
+					h = 2;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.CHAINMAIL_HELMET) {
+					h = 1;
+				}
+				if(p.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) {
+					h = 1;
+				}
+				
+				
+				if(p.getInventory().getLeggings().getType() == Material.AIR) {
+					l = 0;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.NETHERITE_LEGGINGS) {
+					l = 4;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.DIAMOND_LEGGINGS) {
+					l = 3;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.GOLDEN_LEGGINGS) {
+					l = 2; 
+				}
+				if(p.getInventory().getLeggings().getType() == Material.IRON_LEGGINGS) {
+					l = 2;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.CHAINMAIL_LEGGINGS) {
+					l = 1;
+				}
+				if(p.getInventory().getLeggings().getType() == Material.LEATHER_LEGGINGS) {
+					l = 1;
+				} 
+				e =l+h+c+b+ level + hp;
+				p.setMaxHealth(e);
+			}
 }
