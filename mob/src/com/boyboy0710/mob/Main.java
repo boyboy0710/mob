@@ -1,5 +1,6 @@
 package com.boyboy0710.mob;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -562,7 +563,7 @@ public class Main extends JavaPlugin implements Listener{
 		public boolean skeleton = false;
 		public boolean creeper = false;
 		public boolean Wither_Skeleton = false;
-		
+		public boolean witch = false;
 		
 		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 			Player p = (Player) sender;
@@ -624,7 +625,8 @@ public class Main extends JavaPlugin implements Listener{
 	}
 	
 	 public void setIrongolemStats(LivingEntity entity) {
-		 entity.setCustomName("king_Iron golem");
+		 int hp = (int) entity.getHealth();
+		 entity.setCustomName("king_Iron golem" + " hp:" + hp);
 		  entity.setMaxHealth(5000.0);//최대 체력 설정
 		  entity.setHealth(5000.0);//현재 체력 설정
 		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 60));
@@ -639,7 +641,8 @@ public class Main extends JavaPlugin implements Listener{
 		 }
 	
 	 public void setWitherSkeletonStats(LivingEntity entity) {
-		 entity.setCustomName("king_Wither Skeleton");
+		 int hp = (int) entity.getHealth();
+		 entity.setCustomName("king_Wither Skeleton" + " hp:" + hp);
 		  entity.setMaxHealth(5000.0);//최대 체력 설정
 		  entity.setHealth(5000.0);//현재 체력 설정
 		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 6));
@@ -650,11 +653,28 @@ public class Main extends JavaPlugin implements Listener{
 		  entity.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
 		  entity.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
 		  entity.getEquipment().setItemInHand(new ItemStack(Material.BOW));
-		 }
+		  if(hp == 0) {
+			  Wither_Skeleton = false;
+			  Location l = entity.getLocation();
+			  World world = entity.getWorld();
+			  world.strikeLightning(l);
+			  if(!zombie) {
+				   if(!skeleton) {
+					   if(!creeper){
+						   if(!Wither_Skeleton) {
+							   world.setStorm(false);
+							   world.setThundering(false);
+						   }
+					   }
+				   }
+			   }
+			 }
+		  }
 	 
 	
 	 public void setZombieStats(LivingEntity entity) {
-	  entity.setCustomName("king_zombie");
+		 int hp = (int) entity.getHealth();
+	  entity.setCustomName("king_zombie"+ " hp:" + hp);
 	  entity.setMaxHealth(1000.0);//최대 체력 설정
 	  entity.setHealth(1000.0);//현재 체력 설정
 	  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
@@ -665,127 +685,109 @@ public class Main extends JavaPlugin implements Listener{
 	  entity.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
 	  entity.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
 	  entity.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
-	  
-	 }
-	 
-	 public void setCreeperStats(LivingEntity entity) {
-		  entity.setCustomName("king_creeper");
-		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 100));
-		  entity.getEquipment().setItemInHand(new ItemStack(Material.NETHERITE_SWORD));
-		 }
-	 
-	 public void setSkeletonStats(LivingEntity skeleton) {
-		 skeleton.setCustomName("king_skeleton");
-		 skeleton.setMaxHealth(1000.0);//최대 체력 설정
-		 skeleton.setHealth(1000.0);//현재 체력 설정
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,1000000, 10));
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,1000000, 100));
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,1000000, 1));
-		 skeleton.getEquipment().setHelmet(new ItemStack(Material.NETHERITE_HELMET));
-		 skeleton.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
-		 skeleton.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
-		 skeleton.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
-		 skeleton.getEquipment().setItemInHand(new ItemStack(Material.BOW));
-		 }
-	 public void setwitchStats(LivingEntity skeleton) {
-		 skeleton.setCustomName("queen_witch");
-		 skeleton.setMaxHealth(1000.0);//최대 체력 설정
-		 skeleton.setHealth(1000.0);//현재 체력 설정
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,1000000, 10));
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,1000000, 100));
-		 skeleton.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,1000000, 1));
-		 skeleton.getEquipment().setHelmet(new ItemStack(Material.NETHERITE_HELMET));
-		 skeleton.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
-		 skeleton.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
-		 skeleton.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
-		 }
-	 
-	 @EventHandler
-	 public void getWitherSkeletonDead(EntityDeathEvent event) {
-		 if(event.getEntity().getCustomName() == "king_Wither Skeleton") {
-			   ((Entity) event).getWorld().createExplosion(((Entity) event).getLocation(), 50);
-			   Wither_Skeleton = false;
-			   if(!zombie) {
-				   if(!skeleton) {
-					   if(!creeper){
-						   if(!Wither_Skeleton) {
-							   World world = ((Entity) event).getWorld();
-							   world.setStorm(false);
-							   world.setThundering(false);
-						   }
+	  if(hp == 0) {
+		  zombie = false;
+		  Location l = entity.getLocation();
+		  World world = entity.getWorld();
+		  world.strikeLightning(l);
+		  if(!zombie) {
+			   if(!skeleton) {
+				   if(!creeper){
+					   if(!Wither_Skeleton) {
+						   world.setStorm(false);
+						   world.setThundering(false);
 					   }
-				   }
-			   }
-			 }
-	 }
-	
-	 @EventHandler
-	 public void getSkeletonDead(EntityDeathEvent event) {
-		 if(event.getEntity().getCustomName() == "king_skeleton") {
-			   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_BLOCK, 100));
-			   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_HELMET, 100));
-			   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_LEGGINGS, 100));
-			   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_BOOTS, 100));
-			   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_SWORD, 100));
-			   ((Entity) event).getWorld().createExplosion(((Entity) event).getLocation(), 10);
-			   skeleton = false;
-			   if(!zombie) {
-				   if(!skeleton) {
-					   if(!creeper){
-						   if(!Wither_Skeleton) {
-							   World world = ((Entity) event).getWorld();
-							   world.setStorm(false);
-							   world.setThundering(false);
-						   }
-					   }
-				   }
-			   }
-			 }
-	 }
-	 @EventHandler
-	 public void getCreeperDead(EntityDeathEvent event) {
-		 if(event.getEntity().getCustomName() == "king_creeper") {
-			   ((Entity) event).getWorld().createExplosion(((Entity) event).getLocation(), 1000);
-			   creeper = false;
-			   if(!zombie) {
-				   if(!skeleton) {
-					   if(!creeper){
-						   if(!Wither_Skeleton) {
-							   World world = ((Entity) event).getWorld();
-							   world.setStorm(false);
-							   world.setThundering(false);
-						   }
-					   }
-				   }
-			   }
-			 }
-	 }
-	 
-	 @EventHandler
-	 public void getZombieDead(EntityDeathEvent event) {
-	  if(event.getEntity().getCustomName() == "king_zombie") {
-	   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_BLOCK, 100));
-	   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_HELMET, 100));
-	   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_LEGGINGS, 100));
-	   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_BOOTS, 100));
-	   event.getEntity().getWorld().dropItem(event.getEntity().getLocation(),new ItemStack(Material.NETHERITE_SWORD, 100));
-	   ((Entity) event).getWorld().createExplosion(((Entity) event).getLocation(), 10);
-	   zombie = false;
-	   if(!zombie) {
-		   if(!skeleton) {
-			   if(!creeper){
-				   if(!Wither_Skeleton) {
-					   World world = ((Entity) event).getWorld();
-					   world.setStorm(false);
-					   world.setThundering(false);
 				   }
 			   }
 		   }
-	   }
+		 }
 	 }
-	}
 	 
-	
+	 public void setCreeperStats(LivingEntity entity) {
+		 int hp = (int) entity.getHealth();
+		  entity.setCustomName("king_creeper"+ " hp:" + hp);
+		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 100));
+		  entity.getEquipment().setItemInHand(new ItemStack(Material.NETHERITE_SWORD));
+		  if(hp == 0) {
+			  creeper = false;
+			  Location l = entity.getLocation();
+			  World world = entity.getWorld();
+			  world.strikeLightning(l);
+			  if(!zombie) {
+				   if(!skeleton) {
+					   if(!creeper){
+						   if(!Wither_Skeleton) {
+							   world.setStorm(false);
+							   world.setThundering(false);
+						   }
+					   }
+				   }
+			   }
+			 }
+	 }
+	 
+	 public void setSkeletonStats(LivingEntity entity) {
+		 int hp = (int) entity.getHealth();
+		 entity.setCustomName("king_skeleton"+ " hp:" + hp);
+		 entity.setMaxHealth(1000.0);//최대 체력 설정
+		 entity.setHealth(1000.0);//현재 체력 설정
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,1000000, 10));
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,1000000, 100));
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,1000000, 1));
+		 entity.getEquipment().setHelmet(new ItemStack(Material.NETHERITE_HELMET));
+		 entity.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
+		 entity.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
+		 entity.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
+		 entity.getEquipment().setItemInHand(new ItemStack(Material.BOW));
+		 if(hp == 0) {
+			  skeleton = false;
+			  Location l = entity.getLocation();
+			  World world = entity.getWorld();
+			  world.strikeLightning(l);
+			  if(!zombie) {
+				   if(!skeleton) {
+					   if(!creeper){
+						   if(!Wither_Skeleton) {
+							   world.setStorm(false);
+							   world.setThundering(false);
+						   }
+					   }
+				   }
+			   }
+			 }
+		 }
+	 public void setwitchStats(LivingEntity entity) {
+		 int hp = (int) entity.getHealth();
+		 entity.setCustomName("queen_witch"+ " hp:" + hp);
+		 entity.setMaxHealth(1000.0);//최대 체력 설정
+		 entity.setHealth(1000.0);//현재 체력 설정
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.JUMP,1000000, 10));
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST,1000000, 100));
+		 entity.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING,1000000, 1));
+		 entity.getEquipment().setHelmet(new ItemStack(Material.NETHERITE_HELMET));
+		 entity.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE));
+		 entity.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
+		 entity.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
+		 if(hp == 0) {
+			  witch = false;
+			  Location l = entity.getLocation();
+			  World world = entity.getWorld();
+			  world.strikeLightning(l);
+			  if(!zombie) {
+				   if(!skeleton) {
+					   if(!creeper){
+						   if(!Wither_Skeleton) {
+							   world.setStorm(false);
+							   world.setThundering(false);
+						   }
+					   }
+				   }
+			   }
+			 }
+		 }
+	 
+
+	 
 }
