@@ -5,13 +5,11 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -25,7 +23,7 @@ public class Main extends JavaPlugin implements Listener{
 
 	public void onEnable() {
 		System.out.println("----------------------------------------------------------");
-		System.out.println("    mob 를러그인을 성공적으로 불러왔습니다");
+		System.out.println("   §c mob 를러그인을 성공적으로 불러왔습니다");
 		System.out.println("        플러그인 제작자ㅣ:boyboy0710");
 		System.out.println("   최신버전 다운 사이트 : https://github.com/boyboy0710/mob");
 		System.out.println("----------------------------------------------------------");
@@ -52,6 +50,14 @@ public class Main extends JavaPlugin implements Listener{
 	public boolean onCommand1(CommandSender sender, Command cmd, String label, String[] args) {
 		Player p = (Player) sender;
 		int level = p.getLevel();
+		
+		if(cmd.getName().equalsIgnoreCase("time and weather")) {
+			World w = p.getWorld(); 
+			w.setStorm(false);
+			w.setThundering(false);
+			w.setTime(0);
+		}
+		
 		if(cmd.getName().equalsIgnoreCase("reloed_Health")) {
 			if(p.getInventory().getBoots().getType() == Material.NETHERITE_BOOTS) {
 				b = 4;
@@ -658,7 +664,7 @@ public class Main extends JavaPlugin implements Listener{
 			  Location l = entity.getLocation();
 			  World world = entity.getWorld();
 			  world.strikeLightning(l);
-			  if(!zombie) {
+			  if(!zombie) {                              
 				   if(!skeleton) {
 					   if(!creeper){
 						   if(!Wither_Skeleton) {
@@ -674,7 +680,7 @@ public class Main extends JavaPlugin implements Listener{
 	
 	 public void setZombieStats(LivingEntity entity) {
 		 int hp = (int) entity.getHealth();
-	  entity.setCustomName("king_zombie"+ " hp:" + hp);
+	  entity.setCustomName("king_zombie"+ " hp:" + hp);                        // [king_zombie hp:20]
 	  entity.setMaxHealth(1000.0);//최대 체력 설정
 	  entity.setHealth(1000.0);//현재 체력 설정
 	  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
