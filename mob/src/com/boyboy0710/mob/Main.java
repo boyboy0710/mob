@@ -1,5 +1,6 @@
 package com.boyboy0710.mob;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -305,7 +306,8 @@ public class Main extends JavaPlugin implements Listener{
 	
 	 public void setIrongolemStats(LivingEntity entity) {
 		 int hp = (int) entity.getHealth();
-		 entity.setCustomName("king_Iron golem" + " hp:" + hp);
+		 int maxhp = (int) entity.getMaxHealth(); 
+		 entity.setCustomName("king_Iron golem" + ChatColor.RED   +" ❤" + ChatColor.RED + hp + " / " + ChatColor.GREEN + maxhp);
 		  entity.setMaxHealth(5000.0);//최대 체력 설정
 		  entity.setHealth(5000.0);//현재 체력 설정
 		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 60));
@@ -321,7 +323,8 @@ public class Main extends JavaPlugin implements Listener{
 	
 	 public void setWitherSkeletonStats(LivingEntity entity) {
 		 int hp = (int) entity.getHealth();
-		 entity.setCustomName("king_Wither Skeleton" + " hp:" + hp);
+		 int maxhp = (int) entity.getMaxHealth(); 
+		 entity.setCustomName("king_Wither Skeleton" + ChatColor.RED   +" ❤" + ChatColor.RED + hp + " / " + ChatColor.GREEN + maxhp);
 		  entity.setMaxHealth(5000.0);//최대 체력 설정
 		  entity.setHealth(5000.0);//현재 체력 설정
 		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 6));
@@ -353,7 +356,8 @@ public class Main extends JavaPlugin implements Listener{
 	
 	 public void setZombieStats(LivingEntity entity) {
 		 int hp = (int) entity.getHealth();
-	  entity.setCustomName("king_zombie"+ " hp:" + hp);                        // [king_zombie hp:20]
+		 int maxhp = (int) entity.getMaxHealth(); 
+	  entity.setCustomName("king_zombie"+ ChatColor.RED   +" ❤" + ChatColor.RED + hp + " / " + ChatColor.GREEN + maxhp);                        // [king_zombie hp:20/20]
 	  entity.setMaxHealth(1000.0);//최대 체력 설정
 	  entity.setHealth(1000.0);//현재 체력 설정
 	  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
@@ -384,7 +388,8 @@ public class Main extends JavaPlugin implements Listener{
 	 
 	 public void setCreeperStats(LivingEntity entity) {
 		 int hp = (int) entity.getHealth();
-		  entity.setCustomName("king_creeper"+ " hp:" + hp);
+		 int maxhp = (int) entity.getMaxHealth(); 
+		  entity.setCustomName("king_creeper"+ ChatColor.RED   +" ❤" + ChatColor.RED + hp + " / " + ChatColor.GREEN + maxhp);
 		  entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 100));
 		  entity.getEquipment().setItemInHand(new ItemStack(Material.NETHERITE_SWORD));
 		  if(hp == 0) {
@@ -407,7 +412,8 @@ public class Main extends JavaPlugin implements Listener{
 	 
 	 public void setSkeletonStats(LivingEntity entity) {
 		 int hp = (int) entity.getHealth();
-		 entity.setCustomName("king_skeleton"+ " hp:" + hp);
+		 int maxhp = (int) entity.getMaxHealth(); 
+		 entity.setCustomName("king_skeleton"+ ChatColor.RED   +" ❤" + ChatColor.RED + hp + " / " + ChatColor.GREEN + maxhp);
 		 entity.setMaxHealth(1000.0);//최대 체력 설정
 		 entity.setHealth(1000.0);//현재 체력 설정
 		 entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
@@ -437,8 +443,9 @@ public class Main extends JavaPlugin implements Listener{
 			 }
 		 }
 	 public void setwitchStats(LivingEntity entity) {
+		 int maxhp = (int) entity.getMaxHealth(); 
 		 int hp = (int) entity.getHealth();
-		 entity.setCustomName("queen_witch"+ " hp:" + hp);
+		 entity.setCustomName("queen_witch"+ ChatColor.RED   +" ❤" + ChatColor.RED + hp + " / " + ChatColor.GREEN + maxhp);
 		 entity.setMaxHealth(1000.0);//최대 체력 설정
 		 entity.setHealth(1000.0);//현재 체력 설정
 		 entity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,1000000, 10));
