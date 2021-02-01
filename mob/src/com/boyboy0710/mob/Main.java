@@ -39,10 +39,48 @@ public class Main extends JavaPlugin implements Listener{
         Player p = e.getPlayer();
         p.sendMessage("최신버전 다운사이트 : https://github.com/boyboy0710/mob");
 	}
-
+    //Custom mob
+	public boolean custom_bat_ai = true;
+	
+	public void setcustombatStats(LivingEntity entity) {
+		if(custom_bat_ai = false) {
+			entity.setAI(false);
+		}
+		else if (custom_bat_ai = true) {
+			entity.setAI(true);
+		}
+	}
+	
 		public boolean onCommand2(CommandSender sender, Command cmd, String label, String[] args) {
 			Player p = (Player) sender;
 		
+			if(cmd.getName().equalsIgnoreCase("custom_mob")) {
+				if(args.length == 0) {
+					sender.sendMessage("커맨드를 끝까지 쳐주세요");
+				}
+				else if(args[0].equalsIgnoreCase("bat")) {
+					Player player = (Player) sender;
+				    
+				    if(args[1].equalsIgnoreCase("spawn")) {
+				    	setcustombatStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.BAT));
+				    	p.sendMessage("커스텀 박쥐를 스폰하였습니다");
+				    	p.sendMessage("기본설정은 true입니다");
+				    }
+				    
+				    if(args[1].equalsIgnoreCase("ai")) {
+						if(args[2].equalsIgnoreCase("true")) {
+							custom_bat_ai = true;
+							p.sendMessage("박쥐 ai를 true로 설정했습니다");
+						}
+						if(args[2].equalsIgnoreCase("false")) {
+							custom_bat_ai = false;
+							p.sendMessage("박쥐 ai를 false로 설정했습니다");
+						}
+					}
+				}
+				
+			}
+//-------------------------------------------------------------------------------------------------------------------------------------			
 		if(cmd.getName().equalsIgnoreCase("spawn_no_ai")) {
 			if(args.length == 0) {
 				sender.sendMessage("커맨드를 끝까지 쳐주세요");
@@ -155,6 +193,11 @@ public class Main extends JavaPlugin implements Listener{
 			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.SKELETON));
 			}
 			
+			
+			else if(args[0].equalsIgnoreCase("silverflsh")) {
+				Player player = (Player) sender;
+			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.SILVERFISH));
+			}
 			else if(args[0].equalsIgnoreCase("shulker")) {
 				Player player = (Player) sender;
 			    setentityStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.SHULKER));
