@@ -41,38 +41,79 @@ public class Main extends JavaPlugin implements Listener{
 	}
     //Custom mob
 	public boolean custom_bat_ai = true;
+	public boolean custom_bat_glowing = false;
+	
+	int bat_max_hp = 6;
 	
 	public void setcustombatStats(LivingEntity entity) {
-		if(custom_bat_ai = false) {
-			entity.setAI(false);
-		}
-		else if (custom_bat_ai = true) {
-			entity.setAI(true);
-		}
+		entity.setAI(custom_bat_ai);
+		entity.setMaxHealth(bat_max_hp);
+		entity.setHealth(bat_max_hp);
+		entity.setGlowing(custom_bat_glowing);
 	}
 	
-		public boolean onCommand2(CommandSender sender, Command cmd, String label, String[] args) {
+		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 			Player p = (Player) sender;
 		
 			if(cmd.getName().equalsIgnoreCase("custom_mob")) {
 				if(args.length == 0) {
 					sender.sendMessage("커맨드를 끝까지 쳐주세요");
+					p.sendMessage("/custom_mob help 명령어로 사용 방법을 알수있습니다");
 				}
+				
+				else if(args[0].equalsIgnoreCase("help")) {
+					p.sendMessage("스폰 명령어 : /custom_mob [몹이름] spwan");
+					p.sendMessage("몹 설정 변경 : /custom_mob [몹이름] [설정] [값 또는 true 또는 false]");
+					p.sendMessage("현재 사용할수 있는 몹은 /custom_mob help mob 명령어로 확인할수 있습니다");
+					p.sendMessage("현재 사용할수 있는 설정은 /custom_mob help Settings 명령어로 확인할수 있습니다");
+					
+					if(args[1].equalsIgnoreCase("mob")) {
+						p.sendMessage("현재 사용할수 있는 몹");
+						p.sendMessage("bat");
+					}
+					
+					if(args[1].equalsIgnoreCase("Settings")) {
+						p.sendMessage("사용할수 있는 설정");
+						p.sendMessage("max_hp : 몹의 채력을 설정합니다");
+						p.sendMessage("사용법: /custom_mob [몹이름] max_hp [값]");
+						p.sendMessage("");
+						p.sendMessage("reset : 설정이 초기화 됩니다");
+						p.sendMessage("사용법: /custom_mob [몹이름] reset");
+						p.sendMessage("");
+						p.sendMessage("ai : ai 유무를 결정합니다");
+						p.sendMessage("사용법: /custom_mob [몹이름] ai [true or false]");
+					}
+				}
+				
 				else if(args[0].equalsIgnoreCase("bat")) {
 					Player player = (Player) sender;
 				    
-				    if(args[1].equalsIgnoreCase("spawn")) {
+					if(args[1].equalsIgnoreCase("reset")) {
+						p.sendMessage("custom_bat 설정이 초기화 되었습니다");
+						bat_max_hp = 6;
+						custom_bat_ai = true;
+					}
+					
+					else if(args[1].equalsIgnoreCase("spawn")) {
 				    	setcustombatStats((LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.BAT));
 				    	p.sendMessage("커스텀 박쥐를 스폰하였습니다");
 				    	p.sendMessage("기본설정은 true입니다");
 				    }
 				    
-				    if(args[1].equalsIgnoreCase("ai")) {
+				    else if(args[1].equalsIgnoreCase("max_hp")) {
+				    	if(args[2].length() !=0) {
+				    		bat_max_hp = Integer.parseInt(args[2]);
+				    		p.sendMessage("custom_bat 체력을" + bat_max_hp + "로 설정했습니다");
+				    	}
+				    	
+				    }
+				    
+				    else if(args[1].equalsIgnoreCase("ai")) {
 						if(args[2].equalsIgnoreCase("true")) {
 							custom_bat_ai = true;
 							p.sendMessage("박쥐 ai를 true로 설정했습니다");
 						}
-						if(args[2].equalsIgnoreCase("false")) {
+						else if(args[2].equalsIgnoreCase("false")) {
 							custom_bat_ai = false;
 							p.sendMessage("박쥐 ai를 false로 설정했습니다");
 						}
@@ -288,7 +329,7 @@ public class Main extends JavaPlugin implements Listener{
 		public boolean Wither_Skeleton = false;
 		public boolean witch = false;
 		
-		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		public boolean onCommand1(CommandSender sender, Command cmd, String label, String[] args) {
 			Player p = (Player) sender;
 		if(cmd.getName().equalsIgnoreCase("spawn")) {
 			if(args.length == 0) {

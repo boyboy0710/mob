@@ -1,8 +1,11 @@
 main : com.boyboy0710.mob.Main
 name : mob
-version : 1.4.0
+version : 1.5.0
 api-version : 1.16
 
 commands:
   spawn:
+  
   spawn_no_ai:
+  
+  custom_mob:
